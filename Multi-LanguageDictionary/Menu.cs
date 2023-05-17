@@ -10,7 +10,6 @@ namespace Multi_LanguageDictionary
     {
         Requests req = new Requests();
         Dictionary dic = new Dictionary();
-        WordTranslation wordTranslation = new WordTranslation();
         public delegate void Actions(ref Dictionary dic);
 
         //This code uses a nested loop to handle working with an existing dictionary. The outer loop displays the main menu, and the inner loop displays the submeny for the selected dictionary. The user can select options to add, replace, delete, search, or export data for the selected dictionary. The user can also select an option to return to the main menu, which sets the 'workingWithDictionary' flag to false and exits the inner loop.      
@@ -55,19 +54,23 @@ namespace Multi_LanguageDictionary
                             {
                                 case 1:
                                     //code for adding a word and its translation
-                                    req.AddWordTranslation(ref dic, ref wordTranslation);
+                                    req.AddWordTranslation(ref dic);
                                     break;
                                 case 2:
                                     //code for replacing a word or its translation
+                                    req.ReplaceWordTranslation(ref dic);
                                     break;
                                 case 3:
                                     //code for deleting a word or translation
+                                    req.DeleteWordTranslation(ref dic);
                                     break;
                                 case 4:
                                     //code for searching for the translation of a word
+                                    req.SearchWordTranslation(ref dic);
                                     break;
                                 case 5:
                                     //code for exporting dictionary data to a file
+                                    req.ExportDictionaryToFile(dic);
                                     break;
                                 case 0:
                                     workingWithDictionary = false;

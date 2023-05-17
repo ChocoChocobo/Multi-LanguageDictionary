@@ -44,8 +44,8 @@ namespace Multi_LanguageDictionary
             wordTranslations = new WordTranslation[2];
             wordTranslations[0] = new WordTranslation
             {
-                Id = 1,
-                Type = "rus-eng",
+                Id = 0,
+                Type = "eng-rus",
                 Entries = new Dictionary<string, List<string>>()
             };
             wordTranslations[0].Entries.Add("hello", new List<string> { "привет", "здравствуй" });
@@ -54,7 +54,7 @@ namespace Multi_LanguageDictionary
             //test 2
             wordTranslations[1] = new WordTranslation
             {
-                Id = 2,
+                Id = 1,
                 Type = "tr-eng",
                 Entries = new Dictionary<string, List<string>>()
             };
@@ -81,10 +81,22 @@ namespace Multi_LanguageDictionary
                 }
             } while (input == "");
             return input;
-        }        
+        }
 
         //------------------------------------------------------------------
         //adding words and their translations to a cell in Dictionary array
+
+        //this thing checks for the cell
+        public WordTranslation GetWordTranslation(Dictionary dic, int index)
+        {
+            if (index >= 0 && index < dic.Length)
+            {
+                return dic.wordTranslations[index];
+            }
+
+            return null;
+        }
+
         public WordTranslation AddWordTranslation()
         {
             Console.Clear();
