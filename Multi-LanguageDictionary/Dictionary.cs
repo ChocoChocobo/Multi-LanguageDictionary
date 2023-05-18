@@ -7,15 +7,28 @@ using System.Threading.Tasks;
 
 namespace Multi_LanguageDictionary
 {
-    //class that represents Words and Translations
+    /// <summary>
+    /// Represents a word and its translations.
+    /// </summary>
     class WordTranslation
     {
+        /// <summary>
+        /// Gets or sets the Id of the word translation.
+        /// </summary>
         public int Id { get; set; }
+        /// <summary>
+        /// Gets or sets the type of the word translation.
+        /// </summary>
         public string Type { get; set; }
-
-        //Entries property is a dictionary where the keys are the words, and the values are lists of translation variants.
+        /// <summary>
+        /// Gets or sets the entries of the word translation.
+        /// The keys are the words, and the values are lists of translation variants.
+        /// </summary>
         public Dictionary<string, List<string>> Entries { get; set; }
-
+        /// <summary>
+        /// Returns a string representation of the word translation.
+        /// </summary>
+        /// <returns>A string representation of the word translation.</returns>
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
@@ -34,13 +47,18 @@ namespace Multi_LanguageDictionary
             return $"Id: {Id}\nType: {Type}\nWord-translation:\n {sb.ToString()}";
         }
     }
-
+    /// <summary>
+    /// Represents a dictionary of word translations.
+    /// </summary>
     class Dictionary : IEnumerable
     {
-        WordTranslation[] wordTranslations;
+        private WordTranslation[] wordTranslations;
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Dictionary"/> class.
+        /// </summary>
         public Dictionary()
         {
-            //test
+            // test
             wordTranslations = new WordTranslation[2];
             wordTranslations[0] = new WordTranslation
             {
@@ -51,7 +69,7 @@ namespace Multi_LanguageDictionary
             wordTranslations[0].Entries.Add("hello", new List<string> { "привет", "здравствуй" });
             wordTranslations[0].Entries.Add("light", new List<string> { "свет", "лёгкий" });
 
-            //test 2
+            // test 2
             wordTranslations[1] = new WordTranslation
             {
                 Id = 1,
@@ -61,13 +79,22 @@ namespace Multi_LanguageDictionary
             wordTranslations[1].Entries.Add("merhaba", new List<string> { "привет", "здравствуй" });
             wordTranslations[1].Entries.Add("gule gule", new List<string> { "прощай", "пока пока" });
         }
-
-        //creating a new empty array to add Words Translations in it
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Dictionary"/> class with the specified size.
+        /// </summary>
+        /// <param name="size">The size of the dictionary.</param>
         public Dictionary(int size) => wordTranslations = new WordTranslation[size];
+        /// <summary>
+        /// Gets the length of the dictionary.
+        /// </summary>
         public int Length { get { return wordTranslations.Length; } }
 
-        //----------------------------------------------------------------
-        //simple CheckInput for not letting a user enter incorrect values
+        //----------------------------------------------------------------        
+        /// <summary>
+        /// Checks user input, prompting for a value until a non-empty line is entered.
+        /// </summary>
+        /// <param name="inputDesc">The description of the input.</param>
+        /// <returns>The non-empty input value.</returns>
         private string CheckInput(string inputDesc)
         {
             string input;
@@ -83,10 +110,13 @@ namespace Multi_LanguageDictionary
             return input;
         }
 
-        //------------------------------------------------------------------
-        //adding words and their translations to a cell in Dictionary array
-
-        //this thing checks for the cell
+        //------------------------------------------------------------------        
+        /// <summary>
+        /// Retrieves the WordTranslation at the specified index from the given dictionary.
+        /// </summary>
+        /// <param name="dic">The dictionary to retrieve from.</param>
+        /// <param name="index">The index of the WordTranslation.</param>
+        /// <returns>The WordTranslation at the specified index, or null if index is out of range.</returns>
         public WordTranslation GetWordTranslation(Dictionary dic, int index)
         {
             if (index >= 0 && index < dic.Length)
@@ -96,7 +126,10 @@ namespace Multi_LanguageDictionary
 
             return null;
         }
-
+        /// <summary>
+        /// Adds a new WordTranslation to the dictionary.
+        /// </summary>
+        /// <returns>The newly added WordTranslation.</returns>
         public WordTranslation AddWordTranslation()
         {
             Console.Clear();
@@ -118,6 +151,10 @@ namespace Multi_LanguageDictionary
             Console.Clear();
             return wordTranslation;
         }
+        /// <summary>
+        /// Retrieves the word translations entered by the user.
+        /// </summary>
+        /// <returns>A dictionary containing word translations.</returns>
         private Dictionary<string, List<string>> GetWordTranslations()
         {
             Dictionary<string, List<string>> entries = new Dictionary<string, List<string>>();
@@ -151,6 +188,11 @@ namespace Multi_LanguageDictionary
             }
             return entries;
         }
+        /// <summary>
+        /// Finds the index of the WordTranslation with the specified type.
+        /// </summary>
+        /// <param name="type">The type of WordTranslation to search for.</param>
+        /// <returns>The index of the WordTranslation if found, or -1 if not found.</returns>
         private int FindWordTranslation(string type)
         {
             type = type.ToLower();
@@ -165,7 +207,11 @@ namespace Multi_LanguageDictionary
         }
 
         //------------------------------------------------------------------
-        //int index indeksator
+        /// <summary>
+        /// Gets or sets the WordTranslation at the specified index.
+        /// </summary>
+        /// <param name="index">The index of the WordTranslation.</param>
+        /// <returns>The WordTranslation at the specified index, or null if the index is out of range.</returns>
         public WordTranslation this[int index]
         {
             get
@@ -186,7 +232,11 @@ namespace Multi_LanguageDictionary
         }
 
         //------------------------------------------------------------------
-        //string type indeksator
+        /// <summary>
+        /// Gets or sets the WordTranslation with the specified type.
+        /// </summary>
+        /// <param name="type">The type of the WordTranslation.</param>
+        /// <returns>The WordTranslation with the specified type, or null if the type is not found.</returns>
         public WordTranslation this[string type]
         {
             get
@@ -210,7 +260,11 @@ namespace Multi_LanguageDictionary
         }
 
         //------------------------------------------------------------------
-        //Dictionary operators
+        /// <summary>
+        /// Changes the Id property of each WordTranslation in the dictionary.
+        /// </summary>
+        /// <param name="dic">The dictionary to change.</param>
+        /// <returns>The modified dictionary.</returns>
         private static Dictionary ChangeId(Dictionary dic)
         {
             if (dic != null)
@@ -222,7 +276,12 @@ namespace Multi_LanguageDictionary
             }
             return dic;
         }
-
+        /// <summary>
+        /// Adds a WordTranslation to the dictionary.
+        /// </summary>
+        /// <param name="dic">The dictionary.</param>
+        /// <param name="wordTranslation">The WordTranslation to add.</param>
+        /// <returns>The modified dictionary with the added WordTranslation, or the original dictionary if the WordTranslation's type already exists.</returns>
         public static Dictionary operator +(Dictionary dic, WordTranslation wordTranslation)
         {
             Dictionary dict = new Dictionary();
@@ -241,7 +300,10 @@ namespace Multi_LanguageDictionary
         }
 
         //------------------------------------------------------------------
-        //GetEnumerator()
+        /// <summary>
+        /// Returns an enumerator that iterates through the dictionary.
+        /// </summary>
+        /// <returns>An enumerator that can be used to iterate through the dictionary.</returns>
         IEnumerator IEnumerable.GetEnumerator()
         {
             return wordTranslations.GetEnumerator();

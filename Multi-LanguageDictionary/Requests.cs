@@ -8,8 +8,16 @@ using System.Threading.Tasks;
 
 namespace Multi_LanguageDictionary
 {
+    /// <summary>
+    /// Represents requests which are used in menu
+    /// </summary>
     internal class Requests
     {
+        /// <summary>
+        /// Checks user input, prompting for a value until a non-empty line is entered.
+        /// </summary>
+        /// <param name="inputDesc">The description of the input.</param>
+        /// <returns>The non-empty input value.</returns>
         private string CheckInput(string inputDesc)
         {
             string input;
@@ -24,6 +32,14 @@ namespace Multi_LanguageDictionary
             } while (input == "");
             return input;
         }
+        /// <summary>
+        /// Checks if the index is valid for a given dictionary.
+        /// </summary>
+        /// <param name="dic">The dictionary to check.</param>
+        /// <param name="index">The index to check.</param>
+        /// <param name="trueM">The message to display if the index is valid.</param>
+        /// <param name="falseM">The message to display if the index is invalid.</param>
+        /// <returns>True if the index is valid, false otherwise.</returns>
         private bool CheckWordTranslationArray(Dictionary dic, int index, string trueM, string falseM)
         {
             if (index == dic.Length)
@@ -38,6 +54,10 @@ namespace Multi_LanguageDictionary
             }
             //Console.WriteLine("Press Enter...");
         }
+        /// <summary>
+        /// Prompts the user to enter word and translation pairs.
+        /// </summary>
+        /// <returns>A dictionary of word and translation pairs</returns>
         private Dictionary<string, List<string>> GetWordTranslations()
         {
             Dictionary<string, List<string>> entries = new Dictionary<string, List<string>>();
@@ -71,7 +91,10 @@ namespace Multi_LanguageDictionary
             }
             return entries;
         }
-
+        /// <summary>
+        /// Displays the contents of a dictionary.
+        /// </summary>
+        /// <param name="dic">Ref to the dictionary to display</param>
         public void ShowDictionary(ref Dictionary dic)
         {
             //Console.Clear();
@@ -83,7 +106,10 @@ namespace Multi_LanguageDictionary
             Console.ReadKey();
             //Console.Clear();
         }
-
+        /// <summary>
+        /// Creates a new dictionary.
+        /// </summary>
+        /// <param name="dic">Ref to the dictionary.</param>
         public void CreateDictionary(ref Dictionary dic)
         {
             WordTranslation wordTranslation = new WordTranslation();
@@ -95,7 +121,10 @@ namespace Multi_LanguageDictionary
             CheckWordTranslationArray(dic, len, "New dictionary created!", "Trying to add an existing dictionary. Error!");
             Console.ReadKey();
         }
-
+        /// <summary>
+        /// Adds a word and its translation to an existing dictionary.
+        /// </summary>
+        /// <param name="dic">The dictionary to add the word and translations to.</param>
         public void AddWordTranslation(ref Dictionary dic)
         {
             var len = dic.Length;
@@ -126,7 +155,10 @@ namespace Multi_LanguageDictionary
                 }
             }
         }
-        
+        /// <summary>
+        /// Replaces the translation of a word in an existing dictionary.
+        /// </summary>
+        /// <param name="dic">The dictionary to modify.</param>
         public void ReplaceWordTranslation(ref Dictionary dic)
         {
             var len = dic.Length;
@@ -160,7 +192,10 @@ namespace Multi_LanguageDictionary
                 }
             }
         }
-
+        /// <summary>
+        /// Deletes a word and its translation from an existing dictionary.
+        /// </summary>
+        /// <param name="dic">The dictionary to modify.</param>
         public void DeleteWordTranslation(ref Dictionary dic)
         {
             var len = dic.Length;
@@ -192,7 +227,10 @@ namespace Multi_LanguageDictionary
             }
             else { Console.WriteLine($"No dictionary with this id!"); }
         }
-
+        /// <summary>
+        /// Searches for the translation of a word in an existing dictionary.
+        /// </summary>
+        /// <param name="dic">The dictionary to search.</param>
         public void SearchWordTranslation(ref Dictionary dic)
         {
             var len = dic.Length;
@@ -225,11 +263,12 @@ namespace Multi_LanguageDictionary
                         Console.ReadKey();
                     }
                 }
-            }
-
-            
+            }           
         }
-
+        /// <summary>
+        /// Exports the data of an existing dictionary to a file.
+        /// </summary>
+        /// <param name="dic">The dictionary to export.</param>
         public void ExportDictionaryToFile(Dictionary dic)
         {
             var len = dic.Length;

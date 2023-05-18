@@ -6,13 +6,19 @@ using System.Threading.Tasks;
 
 namespace Multi_LanguageDictionary
 {
+    /// <summary>
+    /// Represents a menu where Requests are called.
+    /// </summary>
     internal class Menu
     {
         Requests req = new Requests();
         Dictionary dic = new Dictionary();
         public delegate void Actions(ref Dictionary dic);
 
-        //This code uses a nested loop to handle working with an existing dictionary. The outer loop displays the main menu, and the inner loop displays the submeny for the selected dictionary. The user can select options to add, replace, delete, search, or export data for the selected dictionary. The user can also select an option to return to the main menu, which sets the 'workingWithDictionary' flag to false and exits the inner loop.      
+        //This code uses a nested loop to handle working with an existing dictionary. The outer loop displays the main menu, and the inner loop displays the submeny for the selected dictionary. The user can select options to add, replace, delete, search, or export data for the selected dictionary. The user can also select an option to return to the main menu, which sets the 'workingWithDictionary' flag to false and exits the inner loop.
+        /// <summary>
+        /// Starts the menu for the dictionary program.
+        /// </summary>
         public void StartMenu()
         {
             Console.Clear();
