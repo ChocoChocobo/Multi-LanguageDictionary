@@ -9,5 +9,5 @@ Dictionary program built using C# .net console application for studying purposes
 * Option to delete a word or translation of a word.
 * Option to export dictionary data to a file.
 ## Version history
-* 1.0
+* v1.0-alpha
     * Initial Release
